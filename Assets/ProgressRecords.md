@@ -1,0 +1,26 @@
+﻿# Project Progress Report
+
+## Project Information
+- Main Framework: 
+  - Unity 2021.3.23f1
+  - Mirror 78.8.3
+- Target Platform: Windows 11
+
+## TODO List:
+1. 将破坏墙体预制化并实现并且最好能即时调用
+   - 说明：只要能保证最终物体的一致性，那么墙体的各个切片的Transform数据我们是没必要去同步的，当我们在Server上完成计算后，这些计算都会忠实地反映在Client上：这些碰撞都会再次在客户端上复现
+2. 减少同步内容以降低带宽消耗
+
+## Problem List:
+1. 左侧Panel的数据同步：
+   - 思路：需要完整展示当前所有的游戏角色，这涉及到对应的Panel的预制化
+2. 右侧Panel的数据同步：
+   - 思路：BitFire函数是Rpc，需要使用SyncVar来改写当前的弹药数量，并在呼叫后接收该值
+
+
+## Have Archived:
+1. 2023/6/4 实现了角色名字的广告牌效果
+2. 2023/6/4 实现了角色的不同层级内容的同步
+3. 2023/6/9 Player Animator同步实现
+4. 2023/6/9 动态生成预制件并且多端同步新建物体的速度、位置、旋转等内容的同步。现在，游戏的基本框架算是搭起来了
+5. 
