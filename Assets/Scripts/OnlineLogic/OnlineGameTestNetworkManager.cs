@@ -1,12 +1,16 @@
 ﻿using Mirror;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace OnlineGameTest {
     public class OnlineGameTestNetworkManager : NetworkManager {
         private GameObject _thisPlayerPrefab;
         private GameObject _prePlayerObject;
-        
-        
+        // private Action<OnPlayerNumChanged> _onPlayerNumChangedd;
+        //
+        // public void OnPlayerNumChanged() {
+        // }
+
         public override void OnStartServer() {
             base.OnStartServer();
             RemoteGlobalValues.PrefabPointer = spawnPrefabs;

@@ -1,14 +1,14 @@
-﻿using UnityEngine;
+﻿using Mirror;
 
 namespace OnlineGameTest {
-    public class Singleton<T> : MonoBehaviour where T : Singleton<T>{
+    public class PlayerSingleton<T> : NetworkBehaviour where T : PlayerSingleton<T> {
         private static T _instance;
         public static T Instance => _instance;
 
         public static bool IsInitialized => _instance != null;
 
         protected virtual void Awake() {
-            if (_instance != null) {
+            if (_instance != null && isLocalPlayer) {
                 Destroy(gameObject);
             }
             else {

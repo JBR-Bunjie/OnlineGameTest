@@ -6,7 +6,7 @@ using UnityEngine;
 using TMPro;
 
 namespace OnlineGameTest{
-    public class PlayerManager : Singleton<PlayerManager> {
+    public class PlayerManager : PlayerSingleton<PlayerManager> {
         [SerializeField] public bool _isLocalPlayer;
         public bool IsLocalPlayer => isLocalPlayer;
 

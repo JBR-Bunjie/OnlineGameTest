@@ -16,6 +16,7 @@ namespace OnlineGameTest.Bit {
         
         public bool StoreAmmoAlert { get; private set; }
         public bool MagAmmoAlert { get; private set; }
+        
 
         private void Awake() {
             StoreAmmoAlert = false;
@@ -25,9 +26,7 @@ namespace OnlineGameTest.Bit {
         // temp values
         private uint _counter = 0;
 
-        
-        
-        
+
         /// <summary>
         /// Notices: Make Sure That Running This Command On Server Side Only
         /// </summary>
@@ -64,7 +63,6 @@ namespace OnlineGameTest.Bit {
             // bullet.transform.rotation = GunBitProperties.BulletPrefab.transform.rotation;
             // bullet.GetComponent<Rigidbody>().AddForce(pointer * GunBitProperties.GunBitSpeed);
 
-            GunBitProperties.GunBitBulletCurrentMagazine -= 1;
             
             // Destroy(bullet, gunBitProperties.GunBitBulletExistingTime);
             StartCoroutine(DestroyBulletObject(bullet));
@@ -83,8 +81,16 @@ namespace OnlineGameTest.Bit {
             );
         
             NetworkServer.Spawn(bullet);
+            GunBitProperties.GunBitBulletCurrentMagazine -= 1;
+            if (!isClientOnly)
+                AmmoReflect();
             
             return bullet;
+        }
+        
+        [TargetRpc]
+        public void AmmoReflect() {
+            GunBitProperties.GunBitBulletCurrentMagazine -= 1;
         }
         
         IEnumerator DestroyBulletObject(GameObject bullet) {

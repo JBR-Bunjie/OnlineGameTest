@@ -1,10 +1,5 @@
 ﻿# Project Progress Report
 
-## Project Information
-- Main Framework: 
-  - Unity 2021.3.23f1
-  - Mirror 78.8.3
-- Target Platform: Windows 11
 
 ## TODO List:
 1. 将破坏墙体预制化并实现并且最好能即时调用
@@ -23,4 +18,3 @@
 2. 2023/6/4 实现了角色的不同层级内容的同步
 3. 2023/6/9 Player Animator同步实现
 4. 2023/6/9 动态生成预制件并且多端同步新建物体的速度、位置、旋转等内容的同步。现在，游戏的基本框架算是搭起来了
-5. 

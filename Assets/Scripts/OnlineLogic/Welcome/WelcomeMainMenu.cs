@@ -65,15 +65,19 @@ namespace OnlineGameTest.Welcome {
         public void StartHostAndLoadNewScene() {
             NetworkManagerController.StartHost();
             NetworkManagerController.ServerChangeScene(
-                GameSystemGlobalVariables.GameplaySceneName
+                SceneSpecificData.GameplaySceneName
             );
+            
+            LoadSceneSetting.Instance.LoadSceneData(SceneSpecificData.GameplaySceneName);
         }
 
         public void StartServerAndLoadNewScene() {
             NetworkManagerController.StartServer();
             NetworkManagerController.ServerChangeScene(
-                GameSystemGlobalVariables.GameplaySceneName
+                SceneSpecificData.GameplaySceneName
             );
+            
+            LoadSceneSetting.Instance.LoadSceneData(SceneSpecificData.GameplaySceneName);
         }
 
         public void StartClientAndLoadNewScene() {

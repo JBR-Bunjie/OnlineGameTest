@@ -23,32 +23,32 @@ namespace OnlineGameTest.Welcome {
             #region Setup SubMenu Strings
 
             _basicMenuStrings = new string[] {
-                GameSystemGlobalVariables.Host,
-                GameSystemGlobalVariables.Server,
-                GameSystemGlobalVariables.Client,
-                GameSystemGlobalVariables.Quit
+                NoticeStrings.Host,
+                NoticeStrings.Server,
+                NoticeStrings.Client,
+                NoticeStrings.Quit
             };
 
             _clientMenuStrings = new string[] {
-                GameSystemGlobalVariables.ServerAddressInput,
-                GameSystemGlobalVariables.ServerPortInput,
-                GameSystemGlobalVariables.GamePasswordInput,
-                GameSystemGlobalVariables.Connect,
-                GameSystemGlobalVariables.BackToWelcomeMenu
+                NoticeStrings.ServerAddressInput,
+                NoticeStrings.ServerPortInput,
+                NoticeStrings.GamePasswordInput,
+                NoticeStrings.Connect,
+                NoticeStrings.BackToWelcomeMenu
             };
 
             _serverMenuStrings = new string[] {
-                GameSystemGlobalVariables.ServerPortInput,
-                GameSystemGlobalVariables.StartServer,
-                GameSystemGlobalVariables.GamePasswordInput,
-                GameSystemGlobalVariables.BackToWelcomeMenu
+                NoticeStrings.ServerPortInput,
+                NoticeStrings.StartServer,
+                NoticeStrings.GamePasswordInput,
+                NoticeStrings.BackToWelcomeMenu
             };
 
             _hostMenuStrings = new string[] {
-                GameSystemGlobalVariables.ServerPortInput,
-                GameSystemGlobalVariables.StartHost,
-                GameSystemGlobalVariables.GamePasswordInput,
-                GameSystemGlobalVariables.BackToWelcomeMenu
+                NoticeStrings.ServerPortInput,
+                NoticeStrings.StartHost,
+                NoticeStrings.GamePasswordInput,
+                NoticeStrings.BackToWelcomeMenu
             };
 
             #endregion

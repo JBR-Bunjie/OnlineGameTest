@@ -12,6 +12,8 @@ namespace OnlineGameTest {
         public static PlayerManager TrackingTarget { get; set; }
         
         // Set By Inspector
+        // Right Panel UI GameObjects
+        [Header("Right Part")]
         [SerializeField] private Slider _healthBar;
         [SerializeField] private Slider _healthBarRedBackground;
         [SerializeField] private TMP_Text _healthValueText;
@@ -19,11 +21,16 @@ namespace OnlineGameTest {
         [SerializeField] private TMP_Text _currentWeaponMagLeftText;
         [SerializeField] private TMP_Text _currentWeaponTotalAmmoLeftText;
 
+        // Left Panel UI GameObjects
+        [Header("Left Part")]
+        [SerializeField] private GameObject _leftPanel; // get it, and use it as parent for creating gameobjects
         [SerializeField] private TMP_Text _thisPlayerNameText;
         [SerializeField] private TMP_Text _thisPlayerScore;
         [SerializeField] private List<TMP_Text> _otherPlayerNameText;
         [SerializeField] private List<TMP_Text> _otherPlayerScore;
-        
+        [SerializeField] private GameObject _playerSelfPrefab;
+        [SerializeField] private GameObject _playerOtherPrefab;
+
         public static bool PlayerReady { get; set; }
         
         private CharacterProperties CharacterProperties => TrackingTarget.CharacterProperties;

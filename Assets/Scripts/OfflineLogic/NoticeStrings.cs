@@ -1,25 +1,15 @@
 using UnityEngine;
 
 namespace OnlineGameTest {
-    public static class GameSystemGlobalVariables {
-        #region Scene Name
-
-        // For Load Scene
-        internal static readonly string WelcomeSceneName = "00WelcomeScene";
-        internal static readonly string GameplaySceneName = "02GamePlayScene";
-        internal static readonly string CharacterSelectSceneName = "01CharacterSelectScene";
-        internal static readonly string NetworkErrorSceneName = "03NetworkErrorScene";
-        internal static readonly string GameSettlementSceneName = "04GameSettlementScene";
-        internal static readonly string LoadingScene1Name = "99LoadingScene1";
-        internal static readonly string LoadingScene2Name = "98LoadingScene2";
-        internal static readonly string LoadingScene3Name = "97LoadingScene3";
+    public static class NoticeStrings {
+        #region Game Title
 
         // Game Title
         internal static readonly string GameTitle = "Sour Night";
-
+        
         #endregion
 
-        #region Welcome Page
+        #region Welcome Page Selections Name
 
         // Welcome Page Button Name
         internal static readonly string Host = "Host";
@@ -45,11 +35,5 @@ namespace OnlineGameTest {
 
         #endregion
 
-        #region System Environment
-        
-        internal static float _screenWidth = Screen.width;
-        internal static float _screenHeight = Screen.height;
-
-        #endregion
     }
 }
