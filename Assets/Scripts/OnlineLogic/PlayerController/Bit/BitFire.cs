@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Mirror;
 using UnityEngine;
@@ -10,21 +11,39 @@ namespace OnlineGameTest.Bit {
 
         // Im
         private bool IsLocalPlayer => LocalInstance.IsLocalPlayer;
-        
-        
+
+
         private GunBitProperties GunBitProperties => LocalInstance.GunBitProperties;
+
+        [SyncVar] private int _localMagazineAmmo;
+        [SyncVar] private int _localStoreAmmo;
+        private object _ammoChangeLock = new object();
         
         public bool StoreAmmoAlert { get; private set; }
         public bool MagAmmoAlert { get; private set; }
-        
+
 
         private void Awake() {
             StoreAmmoAlert = false;
             MagAmmoAlert = false;
         }
 
-        // temp values
-        private uint _counter = 0;
+        // Only run on server side;
+        [Command]
+        private void GunBitPropertiesDataInit() {
+            _localMagazineAmmo = GunBitProperties.GunBitBulletInitialMagazine;
+            _localStoreAmmo = GunBitProperties.GunBitBulletInitialStoreNum;
+            
+            GunBitProperties.GunBitBulletCurrentMagazine = GunBitProperties.GunBitBulletInitialMagazine;
+            GunBitProperties.GunBitBulletCurrentStoreNum = GunBitProperties.GunBitBulletInitialStoreNum;
+        }
+
+        private void Start() {
+            if (IsLocalPlayer) {
+                GunBitPropertiesDataInit();
+                // AmmoReflect();
+            }
+        }
 
 
         /// <summary>
@@ -40,7 +59,7 @@ namespace OnlineGameTest.Bit {
         ) {
             if (GunBitProperties.GunBitBulletCurrentMagazine <= 10) {
                 AmmoAlert(mag: true, store: StoreAmmoAlert);
-                if (GunBitProperties.GunBitBulletCurrentMagazine <= 0) {
+                if (GunBitProperties.GunBitBulletCurrentMagazine == 0) {
                     GunBitReload();
                     return;
                 }
@@ -50,7 +69,7 @@ namespace OnlineGameTest.Bit {
             }
 
             GameObject bullet = CreateBulletObject(worldInitialPosition, 0);
-            
+
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             Transform tf = rb.transform; // Transform tf = bullet.GetComponent<Transform>();
 
@@ -60,17 +79,7 @@ namespace OnlineGameTest.Bit {
             rb.mass = gunBitProperties.GunBitBulletMass;
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
-            // bullet.transform.rotation = GunBitProperties.BulletPrefab.transform.rotation;
-            // bullet.GetComponent<Rigidbody>().AddForce(pointer * GunBitProperties.GunBitSpeed);
-
-            
-            // Destroy(bullet, gunBitProperties.GunBitBulletExistingTime);
             StartCoroutine(DestroyBulletObject(bullet));
-            
-            if (GunBitProperties.GunBitBulletCurrentMagazine <= 0) {
-                // if the Current Magazine has no ammo, then try to reload
-                GunBitReload();
-            }
         }
 
         private GameObject CreateBulletObject(Vector3 worldInitialPosition, int bulletSortOffset) {
@@ -79,34 +88,33 @@ namespace OnlineGameTest.Bit {
                 position: worldInitialPosition,
                 rotation: Quaternion.identity
             );
-        
+
             NetworkServer.Spawn(bullet);
-            GunBitProperties.GunBitBulletCurrentMagazine -= 1;
-            if (!isClientOnly)
-                AmmoReflect();
             
+            lock(_ammoChangeLock)
+                GunBitProperties.GunBitBulletCurrentMagazine -= 1;
+            
+            if (GunBitProperties.GunBitBulletCurrentMagazine <= 0) {
+                // if the Current Magazine has no ammo, then try to reload
+                GunBitReload();
+            }
+
+            _localMagazineAmmo = GunBitProperties.GunBitBulletCurrentMagazine;
+            _localStoreAmmo = GunBitProperties.GunBitBulletCurrentStoreNum;
+
             return bullet;
         }
-        
-        [TargetRpc]
-        public void AmmoReflect() {
-            GunBitProperties.GunBitBulletCurrentMagazine -= 1;
-        }
-        
+
         IEnumerator DestroyBulletObject(GameObject bullet) {
             yield return new WaitForSeconds(5);
             NetworkServer.Destroy(bullet);
             yield return null;
         }
-        
+
         public void GunBitReload() {
             int reloadBulletNeededNum = GunBitProperties.GunBitBulletMagazineCapacity -
                                         GunBitProperties.GunBitBulletCurrentMagazine;
 
-            // if (GunBitProperties.GunBitBulletCurrentStoreNum == 0) {
-            //     AmmoAlert(store:true);
-            // }
-            // else 
             if (GunBitProperties.GunBitBulletCurrentStoreNum < reloadBulletNeededNum) {
                 GunBitProperties.GunBitBulletCurrentMagazine += GunBitProperties.GunBitBulletCurrentStoreNum;
                 GunBitProperties.GunBitBulletCurrentStoreNum = 0;
@@ -115,16 +123,43 @@ namespace OnlineGameTest.Bit {
                 GunBitProperties.GunBitBulletCurrentMagazine = GunBitProperties.GunBitBulletMagazineCapacity;
                 GunBitProperties.GunBitBulletCurrentStoreNum -= reloadBulletNeededNum;
             }
+
+            _localMagazineAmmo = GunBitProperties.GunBitBulletCurrentMagazine;
+            _localStoreAmmo = GunBitProperties.GunBitBulletCurrentStoreNum;
+
+            // // ReCheck
+            // AmmoAlert(
+            //     mag: MagAmmoAlert,
+            //     store: GunBitProperties.GunBitBulletCurrentStoreNum <= 
+            //            GunBitProperties.GunBitBulletMagazineCapacity / 2
+            // );
+        }
+
+        // [TargetRpc]
+        private void AmmoReflect() {
+            GunBitProperties.GunBitBulletCurrentMagazine = _localMagazineAmmo;
+            GunBitProperties.GunBitBulletCurrentStoreNum = _localStoreAmmo;
             
             // ReCheck
-            if (GunBitProperties.GunBitBulletCurrentStoreNum <= GunBitProperties.GunBitBulletMagazineCapacity / 2) {
-                AmmoAlert(mag: MagAmmoAlert, store: true);
-            }
-            else {
-                AmmoAlert(mag: MagAmmoAlert, store: false);
-            }
+            AmmoAlert(
+                mag: GunBitProperties.GunBitBulletCurrentMagazine <= 10,
+                store: GunBitProperties.GunBitBulletCurrentStoreNum <= 
+                       GunBitProperties.GunBitBulletMagazineCapacity / 2
+            );
         }
-        
+
+        private void AmmoAlert(bool mag = false, bool store = false) {
+            MagAmmoAlert = mag;
+            StoreAmmoAlert = store;
+        }
+
+        public static void PickUpAmmo() { }
+
+        private void Update() {
+            AmmoReflect();
+        }
+
+
         // [ServerCallback]
         // private void OnCollisionEnter(Collision collision) {
         //     // Note: 'col' holds the collision information. If the
@@ -135,19 +170,10 @@ namespace OnlineGameTest.Bit {
         //
         //     // did we hit a racket? then we need to calculate the hit factor
         //     if (collision.transform.GetComponent<PlayerManager>()) {
+        //         PlayerManager playerManager = collision.transform.GetComponent<PlayerManager>();
         //         
+        //         playerManager.HealthUpdate(-10);
         //     }
         // }
-
-        private void AmmoAlert(bool mag = false, bool store = false) {
-            MagAmmoAlert = mag;
-            StoreAmmoAlert = store;
-        }
-
-        private uint BulletDynamicGuid() {
-            return _counter++;
-        }
-
-        public static void PickUpAmmo() { }
     }
 }

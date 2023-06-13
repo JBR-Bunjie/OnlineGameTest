@@ -1,9 +1,11 @@
-﻿using Mirror;
+﻿using System;
+using Mirror;
 using OnlineGameTest;
 using OnlineGameTest;
 using OnlineGameTest.Bit;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Serialization;
 
 namespace OnlineGameTest{
     public class PlayerManager : PlayerSingleton<PlayerManager> {
@@ -12,19 +14,24 @@ namespace OnlineGameTest{
 
         [Header("Script Set")]
         // Components Just in Script
-        [SerializeField] private PlayerStatus.CharacterStates _characterStates;
+        [SerializeField]
+        private PlayerStatus.CharacterStates _characterStates;
+
         [SerializeField] private PlayerStatus.GunBitStates _gunBitStates;
         [SerializeField] private CharacterProperties _characterProperties;
         [SerializeField] private GunBitProperties _gunBitProperties;
         [SerializeField] private UserSettings _userSettings;
         [SerializeField] private ClientData _clientData;
-        
+        [SerializeField] private ScoreCalculate _scoreCalculate;
+        [SerializeField] [SyncVar] private int _health;
+
         public PlayerStatus.CharacterStates CharacterStates => _characterStates;
         public PlayerStatus.GunBitStates GunBitStates => _gunBitStates;
         public CharacterProperties CharacterProperties => _characterProperties;
         public GunBitProperties GunBitProperties => _gunBitProperties;
         public UserSettings UserSettings => _userSettings;
         public ClientData ClientData => _clientData;
+        public ScoreCalculate ScoreCalculate => _scoreCalculate;
 
         // Components In Handler
         [SerializeField] private PlayerInputProcessing _playerInputProcessing;
@@ -40,11 +47,13 @@ namespace OnlineGameTest{
         public Rigidbody Rigidbody => _rigidbody;
         public Transform Transform => _transform;
         public NetworkIdentity NetworkIdentity => _networkIdentity;
-        
-        
+
+
         [Header("Inspector Set")]
         // GameObjects Structure Set By "Inspector"
-        [SerializeField] private GameObject _totalHandler;
+        [SerializeField]
+        private GameObject _totalHandler;
+
         [SerializeField] private GameObject _modelHandler;
         [SerializeField] private GameObject _characterModel;
         [SerializeField] private GameObject _gunBitModel;
@@ -55,7 +64,7 @@ namespace OnlineGameTest{
         [SerializeField] private Animator _characterAnimator;
         [SerializeField] private Animator _gunBitAnimator;
 
-        
+
         public GameObject TotalHandler => _totalHandler;
         public GameObject ModelHandler => _modelHandler;
         public GameObject CharacterModel => _characterModel;
@@ -70,30 +79,31 @@ namespace OnlineGameTest{
         protected override void Awake() {
             // Base work
             base.Awake();
-            
+
             // Set up components
             _userSettings = new UserSettings();
             _characterStates = new PlayerStatus.CharacterStates();
             _gunBitStates = new PlayerStatus.GunBitStates();
             _characterProperties = new CharacterProperties();
             _gunBitProperties = new GunBitProperties();
-            
+
             // Get components
             _playerInputProcessing = GetComponent<PlayerInputProcessing>();
             _playerControllerRPC = GetComponent<PlayerControllerRPC>();
             _bitFire = GetComponent<BitFire>();
-            
+
             _rigidbody = GetComponent<Rigidbody>();
             _transform = GetComponent<Transform>();
             _networkIdentity = GetComponent<NetworkIdentity>();
             _clientData = GetComponent<ClientData>();
-            
-            
+            _scoreCalculate = GetComponent<ScoreCalculate>();
+
+
             // initialize some components' data
             _clientData.RefreshClientGuid();
-            
+
             CharacterPropertiesInit();
-            
+
             RemoteGlobalValues.PlayerManagers.Add(_clientData.ClientId, Instance);
         }
 
@@ -101,8 +111,8 @@ namespace OnlineGameTest{
         private void CharacterPropertiesInit() {
             _characterProperties.PlayerName = "True - UnityChan";
             _characterProperties.WalkSpeed = 1.4f;
-            _characterProperties.RunSpeed =  3.0f;
-            _characterProperties.JumpForce = 5.0f;
+            _characterProperties.RunSpeed = 3.0f;
+            _characterProperties.JumpForce = 3.0f;
             _characterProperties.Health = 100;
             _characterProperties.MaxHealth = 100;
             _characterProperties.InputEnabled = true;
@@ -112,18 +122,43 @@ namespace OnlineGameTest{
             // _characterProperties.JumpEnabled = ;
             // _characterProperties.GunBitAttackEnabled = ;
             // _characterProperties.GunBitAttackDamage = ;
+            
         }
 
         private void Start() {
             if (IsLocalPlayer) {
+                UIPanelHandler.MainTrackingTarget = this;
                 UIPanelHandler.PlayerReady = true;
-                UIPanelHandler.TrackingTarget = this;
             }
+            
+            _isLocalPlayer = IsLocalPlayer;
+            ServerRecordInit();
+        }
+        
+        [Command]
+        private void ServerRecordInit() {
+            _health = 100;
+        }
+
+        public void HealthUpdate(int changedHealth, bool clientOnly) {
+            HealthUpdateAffect(changedHealth, clientOnly);
+        }
+        
+        [Command]
+        private void HealthUpdateAffect(int changedHealth, bool clientOnly) {
+            _health += changedHealth;
+            
+            // if (clientOnly)
+            //     _characterProperties.Health += changedHealth;
+        }
+
+        // [TargetRpc]
+        private void applyHealthChange() {
+            _characterProperties.Health = _health;
         }
 
         private void Update() {
-            // For test
-            _isLocalPlayer = IsLocalPlayer;
+            applyHealthChange();
         }
     }
 }

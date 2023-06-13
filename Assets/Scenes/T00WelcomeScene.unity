@@ -2729,13 +2729,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1820761205}
   - component: {fileID: 1820761204}
+  - component: {fileID: 1820761206}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1820761204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2748,7 +2749,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1843ba918e9580b4abedde1d91fa0430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSkybox: {fileID: 2100000, guid: 698ef8c083736f74a8bc5c92c29526e1, type: 2}
 --- !u!4 &1820761205
 Transform:
   m_ObjectHideFlags: 0
@@ -2764,6 +2764,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1820761206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820761203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea143341deb43d795ae09b6c2028fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentSceneName: 
+  _welcomeSceneSkybox: {fileID: 0}
+  _intensityMultiplierForWelcomeScene: 0
+  _welcomeSceneAmbientColor: {r: 0, g: 0, b: 0, a: 1}
+  _gamePlayerSceneSkybox: {fileID: 2100000, guid: 698ef8c083736f74a8bc5c92c29526e1,
+    type: 2}
+  _intensityMultiplierForGamePlayerScene: 1
+  _gamePlayerSceneAmbientColor: {r: 54, g: 58, b: 66, a: 1}
 --- !u!1 &1896313909
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@
 namespace OnlineGameTest {
     public class PlayerSingleton<T> : NetworkBehaviour where T : PlayerSingleton<T> {
         private static T _instance;
-        public static T Instance => _instance;
+        protected static T Instance => _instance;
 
         public static bool IsInitialized => _instance != null;
 

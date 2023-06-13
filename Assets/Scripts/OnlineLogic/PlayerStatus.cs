@@ -21,6 +21,8 @@ namespace OnlineGameTest {
             public bool WantToRoll = false;
             public bool WantToJump = false;
             public bool WantToAttack = false;
+            public bool WantToBackToField = false;
+            public bool WantToQuitGame;
             
             // Runtime state, process in Animator, through `SetBoolBehaviour.cs` and `SetInsideVariables.cs`
             public string IsRollingString = "IsRolling";

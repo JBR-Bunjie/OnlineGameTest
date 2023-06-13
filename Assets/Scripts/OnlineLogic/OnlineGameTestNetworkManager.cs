@@ -52,11 +52,11 @@ namespace OnlineGameTest {
             };
             
             NetworkClient.Send(_characterProperties);
-            LocalGlobalValues.CurrentPlayerNum++;
         }
         
         public override void OnClientDisconnect() {
-            LocalGlobalValues.CurrentPlayerNum--;
+            base.OnClientDisconnect();
+            
         }
     }
 }

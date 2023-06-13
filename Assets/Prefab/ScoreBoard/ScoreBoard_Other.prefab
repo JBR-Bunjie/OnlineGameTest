@@ -309,7 +309,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: UnityChanFirest
+  m_text: FakeUnityChan
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 2161741718377412843}
   - component: {fileID: 2161741718377412841}
   - component: {fileID: 2161741718377412842}
-  - component: {fileID: -7232872397562170730}
+  - component: {fileID: 1490102262687910109}
   m_Layer: 5
   m_Name: ScoreBoard_Other
   m_TagString: Untagged
@@ -535,7 +535,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-7232872397562170730
+--- !u!114 &1490102262687910109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -544,9 +544,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2161741718377412628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa0ed49cb33002a4cafcc5e2f69e143e, type: 3}
+  m_Script: {fileID: 11500000, guid: 14cd2256d9a84a47b1b3fc074aadb386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _thisPlayerNameText: {fileID: 2161741717834705281}
+  _thisPlayerScore: {fileID: 2161741719411698703}
+  targetPlayerId: 
 --- !u!1 &2161741718425126797
 GameObject:
   m_ObjectHideFlags: 0

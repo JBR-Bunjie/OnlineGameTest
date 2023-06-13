@@ -23,7 +23,7 @@ public class NetworkManagerController : MonoBehaviour {
         get => _pingDisplay;
         private set => _pingDisplay = value;
     }
-
+    
     private void Awake() {
         CostumeKcpTransport = gameObject.AddComponent<OnlineGameTestKcpTransport>();
         CostumeNetworkManager = gameObject.AddComponent<OnlineGameTestNetworkManager>();

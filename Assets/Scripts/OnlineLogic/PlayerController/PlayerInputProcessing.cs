@@ -114,6 +114,10 @@ namespace OnlineGameTest {
             // Set WantJumping State
             CharacterStates.WantToJump = Input.GetKeyDown(UserSettings.ControllerA);
         }
+        
+        void ControllerReSetPosition() {
+            CharacterStates.WantToBackToField = Input.GetKeyDown(UserSettings.ControllerY);
+        }
 
         void ControllerGunBitAttack() {
             /* ----------------- Set Built-in States ----------------- */
@@ -125,7 +129,11 @@ namespace OnlineGameTest {
         void ControllerGunBitReload() {
             GunBitStates.WantToReload = Input.GetKeyDown(UserSettings.ControllerX);
         }
-        
+
+        void ControllerWantToQuit() {
+            CharacterStates.WantToQuitGame = Input.GetKeyDown(UserSettings.ControllerStart);
+        }
+
         #endregion
 
 
@@ -155,10 +163,13 @@ namespace OnlineGameTest {
                     
                     // Need For RPC
                     ControllerMove();
+                    ControllerReSetPosition();
                     ControllerGunBitAttack();
                     ControllerGunBitReload();
                 }
             }
+
+            ControllerWantToQuit();
             // TODO: Input Disabled, Load Special Status
             // else {
             //     

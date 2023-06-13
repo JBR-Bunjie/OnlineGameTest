@@ -2,18 +2,18 @@ using Mirror;
 
 namespace OnlineGameTest {
     public struct CharacterProperties : NetworkMessage {
-         private string _playerName;
-         private float _walkSpeed;
-         private float _runSpeed;
-         private float _jumpForce;
-         private int _health;
-         private int _maxHealth;
-         private int _damage;
-         private float _cameraSensitivity;
+        private string _playerName;
+        private float _walkSpeed;
+        private float _runSpeed;
+        private float _jumpForce;
+        private int _health;
+        private int _maxHealth;
+        private int _damage;
+        private float _cameraSensitivity;
         
-         // Input Controlling
-         private bool _inputEnabled;
-         private bool _runEnabled;
+        // Input Controlling
+        private bool _inputEnabled;
+        private bool _runEnabled;
         
         public int Health {
             get => _health;

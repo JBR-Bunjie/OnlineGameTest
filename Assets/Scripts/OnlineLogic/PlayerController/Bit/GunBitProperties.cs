@@ -4,8 +4,10 @@ namespace OnlineGameTest.Bit {
     public class GunBitProperties {
         // GameObject Pointer
         private GameObject _bulletPrefab;
-        private int _gunBitBulletCurrentMagazine = 45;
-        private int _gunBitBulletCurrentStoreNum = 120;
+        private int _gunBitBulletInitialMagazine = 45;
+        private int _gunBitBulletInitialStoreNum = 120;
+        private int _gunBitBulletCurrentMagazine;
+        private int _gunBitBulletCurrentStoreNum;
         private const int _gunBitBulletMagazineCapacity = 60;
         private const int _gunBitBulletMaxStoreNum = 600;
 
@@ -20,6 +22,16 @@ namespace OnlineGameTest.Bit {
         public GameObject BulletPrefab {
             get => _bulletPrefab;
             set => _bulletPrefab = value;
+        }
+        
+        public int GunBitBulletInitialMagazine {
+            get => _gunBitBulletInitialMagazine;
+            set => _gunBitBulletInitialMagazine = value;
+        }
+        
+        public int GunBitBulletInitialStoreNum {
+            get => _gunBitBulletInitialStoreNum;
+            set => _gunBitBulletInitialStoreNum = value;
         }
         
         public int GunBitBulletCurrentMagazine {

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace OnlineGameTest {
@@ -9,7 +10,14 @@ namespace OnlineGameTest {
 
             var root = transform.gameObject;
 
-            return root.GetComponent<ClientData>().ClientId;
+            string clientID = root.GetComponent<ClientData>().ClientId;
+
+            if (!LocalGlobalValues.PlayerLists.Keys.Contains(clientID)) {
+                LocalGlobalValues.PlayerLists.Add(clientID, root.GetComponent<PlayerManager>());
+                LocalGlobalValues.ClientPlayerIds.Add(clientID);
+            }
+
+            return clientID;
         }
 
         public static PlayerManager GetPlayerManager(string playerId) {

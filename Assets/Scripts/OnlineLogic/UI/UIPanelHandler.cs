@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 namespace OnlineGameTest {
     public class UIPanelHandler : MonoBehaviour {
-        public static PlayerManager TrackingTarget { get; set; }
-        
+        public static PlayerManager MainTrackingTarget { get; set; } // this is the local player
+
         // Set By Inspector
         // Right Panel UI GameObjects
         [Header("Right Part")]
@@ -24,18 +24,14 @@ namespace OnlineGameTest {
         // Left Panel UI GameObjects
         [Header("Left Part")]
         [SerializeField] private GameObject _leftPanel; // get it, and use it as parent for creating gameobjects
-        [SerializeField] private TMP_Text _thisPlayerNameText;
-        [SerializeField] private TMP_Text _thisPlayerScore;
-        [SerializeField] private List<TMP_Text> _otherPlayerNameText;
-        [SerializeField] private List<TMP_Text> _otherPlayerScore;
         [SerializeField] private GameObject _playerSelfPrefab;
         [SerializeField] private GameObject _playerOtherPrefab;
 
         public static bool PlayerReady { get; set; }
         
-        private CharacterProperties CharacterProperties => TrackingTarget.CharacterProperties;
-        private GunBitProperties GunBitProperties => TrackingTarget.GunBitProperties;
-        private BitFire BitFire => TrackingTarget.BitFire;
+        private CharacterProperties CharacterProperties => MainTrackingTarget.CharacterProperties;
+        private GunBitProperties GunBitProperties => MainTrackingTarget.GunBitProperties;
+        private BitFire BitFire => MainTrackingTarget.BitFire;
 
         private Color _currentWeaponMagLeftTextNormalColor;
         private Color _currentWeaponTotalAmmoLeftTextNormalColor;
@@ -53,7 +49,9 @@ namespace OnlineGameTest {
         private const float TOLERANCE = 0.0001f;
 
 
-        private void UpdateBarPanel() {
+        #region Right Panel
+        
+        private void UpdateRightPanelHealthBar() {
             // Set Text
             _currentWeaponMagLeftText.text = GunBitProperties.GunBitBulletCurrentMagazine.ToString();
             _currentWeaponTotalAmmoLeftText.text = GunBitProperties.GunBitBulletCurrentStoreNum.ToString();
@@ -87,9 +85,6 @@ namespace OnlineGameTest {
             );
 
             _healthValueText.text = health.ToString();
-            
-            _thisPlayerNameText.text = CharacterProperties.PlayerName;
-            _thisPlayerScore.text = CharacterProperties.Health.ToString();
         }
 
 
@@ -131,11 +126,66 @@ namespace OnlineGameTest {
             }
         }
 
+
+        #endregion
+
+        #region Left Panel
+
+        private void UpdateLeftPanel() {
+            foreach (var clientPlayerId in LocalGlobalValues.ClientPlayerIds) {
+                PlayerManager currentInstance = LocalGlobalValues.PlayerLists[clientPlayerId];
+
+                LocalGlobalValues.PlayerScoreBoardDict.TryGetValue(clientPlayerId, out var targetScoreArea);
+                
+                if (targetScoreArea == null) {
+                    if (currentInstance.IsLocalPlayer) {
+                        targetScoreArea = Instantiate(_playerSelfPrefab);
+                    }
+                    else {
+                        targetScoreArea = Instantiate(_playerOtherPrefab);
+                    }
+
+                    targetScoreArea.GetComponent<PlayerScoreApply>().targetPlayerId = clientPlayerId;
+                    targetScoreArea.GetComponent<PlayerScoreApply>().targetPlayerManager = currentInstance;
+                    targetScoreArea.transform.SetParent(_leftPanel.transform, false);
+                    LocalGlobalValues.PlayerScoreBoardDict[clientPlayerId] = targetScoreArea;
+                    ReAdjustTotalPanelPosition(targetScoreArea, currentInstance.IsLocalPlayer);
+                }
+                
+                targetScoreArea.GetComponent<PlayerScoreApply>().Refresh();
+                
+            }
+        }
+        
+        private void ReAdjustTotalPanelPosition(GameObject go, bool localPlayer) {
+            if (LocalGlobalValues.PlayerScoreBoardDict.Keys.Count <= 2) return;
+            else {
+                int index = 0;
+                foreach (var clientPlayerId in LocalGlobalValues.ClientPlayerIds) {
+                    GameObject area = LocalGlobalValues.PlayerScoreBoardDict[clientPlayerId];
+                    SetNewPosition(go, localPlayer);
+                    if (!localPlayer) index++;
+                }
+            }
+        }
+
+        private void SetNewPosition(GameObject go, bool localPlayer, int index = 0) {
+            RectTransform rt = go.GetComponent<RectTransform>();
+            if (localPlayer) {
+                rt.position = new Vector3(rt.position.x, 200, rt.position.z);
+            }
+            else {
+                rt.position = new Vector3(rt.position.x, 100 - 100 * index, rt.position.z);
+            }
+        }
+
+        #endregion
         
         // Update is called once per frame
         void Update() {
             if (PlayerReady) {
-                UpdateBarPanel();
+                UpdateRightPanelHealthBar();
+                UpdateLeftPanel();
             }
         }
     }

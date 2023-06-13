@@ -7,6 +7,7 @@ namespace OnlineGameTest.Welcome {
         #region Sub Menu Data
 
         [SerializeField] private GameObject _targetManagerObject;
+        
         private NetworkManagerController NetworkManagerController { get; set; }
 
         private string ServerAddress { get; set; } = "localhost";
@@ -65,19 +66,17 @@ namespace OnlineGameTest.Welcome {
         public void StartHostAndLoadNewScene() {
             NetworkManagerController.StartHost();
             NetworkManagerController.ServerChangeScene(
-                SceneSpecificData.GameplaySceneName
+                SceneNavigator.GameplaySceneName
             );
-            
-            LoadSceneSetting.Instance.LoadSceneData(SceneSpecificData.GameplaySceneName);
+            // LoadSceneSetting.Instance.SceneSpecificData.CurrentSceneName = SceneNavigator.GameplaySceneName;
         }
 
         public void StartServerAndLoadNewScene() {
             NetworkManagerController.StartServer();
             NetworkManagerController.ServerChangeScene(
-                SceneSpecificData.GameplaySceneName
+                SceneNavigator.GameplaySceneName
             );
-            
-            LoadSceneSetting.Instance.LoadSceneData(SceneSpecificData.GameplaySceneName);
+            // LoadSceneSetting.Instance.SceneSpecificData.CurrentSceneName = SceneNavigator.GameplaySceneName;
         }
 
         public void StartClientAndLoadNewScene() {

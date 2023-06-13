@@ -1,25 +1,35 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace OnlineGameTest {
-    public static class SceneSpecificData {
-        // For Load Scene
-        internal static readonly string WelcomeSceneName = "T00WelcomeScene";
-        internal static readonly string CharacterSelectSceneName = "T01CharacterSelectScene";
-        internal static readonly string GameplaySceneName = "T02GamePlayScene";
-        internal static readonly string NetworkErrorSceneName = "T03NetworkErrorScene";
-        internal static readonly string GameSettlementSceneName = "T04GameSettlementScene";
-        internal static readonly string LoadingScene1Name = "T99LoadingScene1";
-        internal static readonly string LoadingScene2Name = "T98LoadingScene2";
-        internal static readonly string LoadingScene3Name = "T97LoadingScene3";
+    public class SceneSpecificData : MonoBehaviour {
+        // Scene Status
+        [SerializeField] private string _currentSceneName;
+        public bool CurrentSceneChanged { get; set; }
+        public string CurrentSceneName {
+            get { return _currentSceneName; }
+            set {
+                if (value != _currentSceneName) {
+                    _currentSceneName = value;
+                    CurrentSceneChanged = true;
+                }
+            }
+        }
         
-        // For Load Scene
-        internal static readonly string WelcomeSceneNameLightAsset = "TL00WelcomeScene";
-        internal static readonly string CharacterSelectSceneNameLightAsset = "TL01CharacterSelectScene";
-        internal static readonly string GameplaySceneNameLightAsset = "TL02GamePlayScene";
-        internal static readonly string NetworkErrorSceneNameLightAsset = "TL03NetworkErrorScene";
-        internal static readonly string GameSettlementSceneNameLightAsset = "TL04GameSettlementScene";
-        internal static readonly string LoadingScene1NameLightAsset = "TL99LoadingScene1";
-        internal static readonly string LoadingScene2NameLightAsset = "TL98LoadingScene2";
-        internal static readonly string LoadingScene3NameLightAsset = "TL97LoadingScene3";
+        [SerializeField] private Material _welcomeSceneSkybox = null;
+        [SerializeField] private float _intensityMultiplierForWelcomeScene = 0.0f;
+        [SerializeField] private Color _welcomeSceneAmbientColor = Color.black;
+        [SerializeField] private Material _gamePlayerSceneSkybox;
+        [SerializeField] private float _intensityMultiplierForGamePlayerScene = 0.5f;
+        // Default Ambient Color: intensity = 0; rgb only
+        [SerializeField] private Color _gamePlayerSceneAmbientColor = new(54, 58, 66);
+        
+        
+        public Material WelcomeSceneSkybox => _welcomeSceneSkybox;
+        public float IntensityMultiplierForWelcomeScene => _intensityMultiplierForWelcomeScene;
+        public Color WelcomeSceneAmbientColor => _welcomeSceneAmbientColor;
+        public Material GamePlayerSceneSkybox => _gamePlayerSceneSkybox;
+        public float IntensityMultiplierForGamePlayerScene => _intensityMultiplierForGamePlayerScene;
+        public Color GamePlayerSceneAmbientColor => _gamePlayerSceneAmbientColor;
     }
 }

@@ -87,6 +87,7 @@ namespace OnlineGameTest {
             _remoteInterpolatedSpeedFactor = interpolatedSpeedFactor;
         }
 
+        
         private void ApplyOtherPlayerForward() {
             ModelHandlerTransform.forward = _remoteForward;
             CharacterAnimator.SetFloat(CharacterAnimationString.Forward, _remoteInterpolatedSpeedFactor);
@@ -103,7 +104,8 @@ namespace OnlineGameTest {
 
             _thrustVec = Vector3.zero;
             
-            Rigidbody.velocity = realTimeVelocity;
+            // Rigidbody.velocity = realTimeVelocity;
+            transform.position += realTimeVelocity * Time.fixedDeltaTime;
 
             /* ----------------- Set Animator ----------------- */
             CharacterAnimator.SetFloat(CharacterAnimationString.YVelocity, realTimeVelocity.y);
@@ -113,11 +115,16 @@ namespace OnlineGameTest {
         private void PlayerJump() {
             if (CharacterStates.WantToJump) {
                 CharacterAnimator.SetTrigger(CharacterAnimationString.JumpTrigger);
-                Rigidbody.velocity += Vector3.up * CharacterProperties.JumpForce;
+                CmdPlayerJumpInvoke();
             }
         }
-
-
+        
+        [Command]
+        private void CmdPlayerJumpInvoke() {
+            CharacterAnimator.SetTrigger(CharacterAnimationString.JumpTrigger);
+            Rigidbody.velocity += Vector3.up * CharacterProperties.JumpForce;
+        }
+        
         private void RotateTotalHandler() {
             Vector3 modelEuler = ModelHandler.transform.eulerAngles;
             Vector3 playerInfoHandlerEuler = PlayerInfoHandler.transform.eulerAngles;
@@ -139,9 +146,21 @@ namespace OnlineGameTest {
             PlayerInfoHandler.transform.eulerAngles = playerInfoHandlerEuler;
         }
 
+        private void ReversePosition() {
+            if (CharacterStates.WantToBackToField) {
+                transform.position = new Vector3(0, 1.5f, 0);
+                LocalInstance.HealthUpdate(-10, isClientOnly);
+                ClearVelocity();
+            }
+        }
+        
+        [Command]
+        private void ClearVelocity() {
+            Rigidbody.velocity = Vector3.zero;
+        }
+        
         private void GunBitFire() {
             if (GunBitStates.WantToAttack) {
-                
                 CmdGunBitFireRpc();
             }
         }
@@ -161,10 +180,20 @@ namespace OnlineGameTest {
         }
 
         [Command]
-        public void CmdGunBitReloadRpc() {
+        private void CmdGunBitReloadRpc() {
             BitFire.GunBitReload();
         }
 
+        private void QuitGame() {
+            if (CharacterStates.WantToQuitGame) {
+                #if (UNITY_EDITOR)
+                    UnityEditor.EditorApplication.isPlaying = false;
+                #elif (UNITY_STANDALONE)
+                    Application.Quit();
+                #endif
+            }
+        }
+        
         #endregion
 
         void Update() {
@@ -172,24 +201,24 @@ namespace OnlineGameTest {
                 // Player
                 PlayerForward();
                 PlayerJump();
+                ReversePosition();
+                RotateTotalHandler();
 
                 // GunBit
                 GunBitFire();
                 GunBitReload();
-                RotateTotalHandler();
             }
             else {
                 ApplyOtherPlayerForward();
             }
+
+            QuitGame();
         }
 
         private void FixedUpdate() {
             if (IsLocalPlayer) {
                 PlayerTransform();
             }
-            // else {
-            //     TargetPlayerTransformRpc();
-            // }
         }
     }
 }
