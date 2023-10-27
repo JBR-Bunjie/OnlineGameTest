@@ -1,0 +1,8 @@
+{
+	"name": "OnlineGameTest.HotFix",
+	"references": [
+		"Luban.Runtime",
+		"Unity.Addressables",
+		"Unity.ResourceManager"
+	]
+}

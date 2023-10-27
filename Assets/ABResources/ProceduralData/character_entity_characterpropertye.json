@@ -1,0 +1,12 @@
+[
+  {
+    "id": 10000,
+    "name": "UnityChan",
+    "health": 100,
+    "default_sprint_speed": 3.5,
+    "default_running_speed": 1.5,
+    "default_walking_speed": 0.8,
+    "default_aiming_moving_speed": 1,
+    "default_jump_force": 5
+  }
+]

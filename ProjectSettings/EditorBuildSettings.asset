@@ -6,27 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/T00WelcomeScene.unity
+    path: Assets/Scenes/StartUP.unity
+    guid: 58d4cd84901238b489d1a53ae49eaaa6
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
     guid: 8fc5bd8725cdc3d4f9b4b8e22352d80d
   - enabled: 1
-    path: Assets/Scenes/T01CharacterSelectScene.unity
-    guid: 9a8cfae77b7f5944d85467c895041df2
-  - enabled: 1
-    path: Assets/Scenes/T02GamePlayScene.unity
-    guid: 47ea55fd2d1382e40932a4d579abda18
-  - enabled: 1
-    path: Assets/Scenes/T03NetworkErrorScene.unity
-    guid: 1364bb5d003f6da4595151eb828623d5
-  - enabled: 1
-    path: Assets/Scenes/T04GameSettlementScene.unity
+    path: Assets/Scenes/Loading.unity
     guid: 1ccc9a1e7b8d99a4191081e5cd34b70b
   - enabled: 1
-    path: Assets/Scenes/T97LoadingScene3.unity
-    guid: 17506699b788f8e4baa176c3e5cefbed
+    path: Assets/Scenes/Home.unity
+    guid: 1364bb5d003f6da4595151eb828623d5
   - enabled: 1
-    path: Assets/Scenes/T98LoadingScene2.unity
-    guid: 2ad5480406936114a9912c3abd051320
-  - enabled: 1
-    path: Assets/Scenes/T99LoadingScene1.unity
-    guid: a9635c85f9d824848a1e16e15cf1a600
-  m_configObjects: {}
+    path: Assets/Scenes/BattleField.unity
+    guid: 47ea55fd2d1382e40932a4d579abda18
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: cb6dc80e3aadb9946a333dba5e3c62f1,
+      type: 2}

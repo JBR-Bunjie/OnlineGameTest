@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: ABResources
+  m_EditorClassIdentifier: 
+  m_GroupName: ABResources
+  m_Data:
+    m_SerializedData: []
+  m_GUID: d113e5801bf89f1448d5468e532a048d
+  m_SerializeEntries:
+  - m_GUID: 364d138c6a371804a9fb4f69d5c2d1e8
+    m_Address: Assets/ABResources/Animation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8dd978777e431d1469232ac316786eee
+    m_Address: Assets/ABResources/Audio
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3a39716323d98364a9e0c00d52e8fc70
+    m_Address: Assets/ABResources/ProceduralData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 67ac6099506ed724aa9aac14168a2d5d
+    m_Address: Assets/ABResources/Materials
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a82202707c3bf6742bc31a581e3d451f
+    m_Address: Assets/ABResources/Prefabs
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 6331d37cfdf0b484da0966c069866e6b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c79ca281c5c2a804a8f2dfdbd6b33a44, type: 2}
+    - {fileID: 11400000, guid: 1cddb4dc18fbb294394a4625d9f15133, type: 2}

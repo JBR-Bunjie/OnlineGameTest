@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
+  m_Name: AddressableAssetSettings
+  m_EditorClassIdentifier: 
+  m_DefaultGroup: 6a529824bbff72349a6da20096d107fa
+  m_CachedHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_OptimizeCatalogSize: 0
+  m_BuildRemoteCatalog: 1
+  m_BundleLocalCatalog: 0
+  m_CatalogRequestsTimeout: 15
+  m_DisableCatalogUpdateOnStart: 1
+  m_IgnoreUnsupportedFilesInBuild: 0
+  m_UniqueBundleIds: 0
+  m_NonRecursiveBuilding: 1
+  m_CCDEnabled: 0
+  m_maxConcurrentWebRequests: 100
+  m_ContiguousBundles: 1
+  m_StripUnityVersionFromBundleBuild: 0
+  m_DisableVisibleSubAssetRepresentations: 0
+  m_ShaderBundleNaming: 0
+  m_ShaderBundleCustomNaming: 
+  m_MonoScriptBundleNaming: 0
+  m_MonoScriptBundleCustomNaming: 
+  m_RemoteCatalogBuildPath:
+    m_Id: b96a592a5da938b47a16d4cd24d31efc
+  m_RemoteCatalogLoadPath:
+    m_Id: a1f7db29843a0ed4384a5f05f6562ac6
+  m_ContentStateBuildPath: 
+  m_BuildAddressablesWithPlayerBuild: 0
+  m_overridePlayerVersion: 
+  m_GroupAssets:
+  - {fileID: 11400000, guid: 7a9201f008c6629498e5e97ce5ed11e8, type: 2}
+  - {fileID: 11400000, guid: 56c882a8c635e6048ab641fcb71cb8c6, type: 2}
+  - {fileID: 11400000, guid: 8e977fa13070cfd4ba3d8ca8416c1657, type: 2}
+  m_BuildSettings:
+    m_CompileScriptsInVirtualMode: 0
+    m_CleanupStreamingAssetsAfterBuilds: 1
+    m_LogResourceManagerExceptions: 1
+    m_BundleBuildPath: Temp/com.unity.addressables/AssetBundles
+  m_ProfileSettings:
+    m_Profiles:
+    - m_InheritedParent: 
+      m_Id: 03818a574304a8b4094b3428ab321697
+      m_ProfileName: Default
+      m_Values:
+      - m_Id: b36f1b3d836361f4baa023b9f3376544
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 7944efc5d6201e345a32b90393ac0504
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 1f24be0f4441d624db51d4e7fd0c2dc8
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: b96a592a5da938b47a16d4cd24d31efc
+        m_Value: ServerData/[BuildTarget]
+      - m_Id: a1f7db29843a0ed4384a5f05f6562ac6
+        m_Value: http://[PrivateIpAddress]:[HostingServicePort]
+    - m_InheritedParent: 
+      m_Id: 0fd726bcdb5aa8d4fae5d9fd920d4f9c
+      m_ProfileName: SP_104
+      m_Values:
+      - m_Id: b36f1b3d836361f4baa023b9f3376544
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 7944efc5d6201e345a32b90393ac0504
+        m_Value: ServerData/[BuildTarget]
+      - m_Id: 1f24be0f4441d624db51d4e7fd0c2dc8
+        m_Value: http://[PrivateIpAddress]:[HostingServicePort]
+      - m_Id: b96a592a5da938b47a16d4cd24d31efc
+        m_Value: HFSAddressablePackages
+      - m_Id: a1f7db29843a0ed4384a5f05f6562ac6
+        m_Value: http://192.168.0.104/HFS/Download/OnlineGameTest/Addressable
+    m_ProfileEntryNames:
+    - m_Id: b36f1b3d836361f4baa023b9f3376544
+      m_Name: BuildTarget
+      m_InlineUsage: 0
+    - m_Id: 7944efc5d6201e345a32b90393ac0504
+      m_Name: Local.BuildPath
+      m_InlineUsage: 0
+    - m_Id: 1f24be0f4441d624db51d4e7fd0c2dc8
+      m_Name: Local.LoadPath
+      m_InlineUsage: 0
+    - m_Id: b96a592a5da938b47a16d4cd24d31efc
+      m_Name: Remote.BuildPath
+      m_InlineUsage: 0
+    - m_Id: a1f7db29843a0ed4384a5f05f6562ac6
+      m_Name: Remote.LoadPath
+      m_InlineUsage: 0
+    m_ProfileVersion: 1
+  m_LabelTable:
+    m_LabelNames:
+    - default
+    - generatedData
+    - generatedCode
+    - Entry
+  m_SchemaTemplates: []
+  m_GroupTemplateObjects:
+  - {fileID: 11400000, guid: 45693bb1cce8bfe49924d4c08bbae875, type: 2}
+  m_InitializationObjects:
+  - {fileID: 11400000, guid: bb07c165c36acc84ab6f763d90e94a99, type: 2}
+  m_CertificateHandlerType:
+    m_AssemblyName: 
+    m_ClassName: 
+  m_ActivePlayerDataBuilderIndex: 3
+  m_DataBuilders:
+  - {fileID: 11400000, guid: 583035fd066606f4593a3c06e9f368e2, type: 2}
+  - {fileID: 11400000, guid: 51cf565865002b444985cb382413e5bc, type: 2}
+  - {fileID: 11400000, guid: b359eb363a7564d4e89651215daebdf6, type: 2}
+  - {fileID: 11400000, guid: 412ecf60a64b58c4d9ca7356063e43f2, type: 2}
+  m_ActiveProfileId: 0fd726bcdb5aa8d4fae5d9fd920d4f9c
+  m_HostingServicesManager:
+    m_HostingServiceInfos:
+    - classRef: UnityEditor.AddressableAssets.HostingServices.HttpHostingService,
+        Unity.Addressables.Editor
+      dataStore:
+        m_SerializedData:
+        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+          m_ClassName: System.Int32
+          m_Data: 20010
+          m_Key: HostingServicePort
+        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+          m_ClassName: System.Int32
+          m_Data: 0
+          m_Key: HostingServiceUploadSpeed
+        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+          m_ClassName: System.String
+          m_Data: HFSAddressablePackages
+          m_Key: ContentRoot
+        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+          m_ClassName: System.Boolean
+          m_Data: False
+          m_Key: IsEnabled
+        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+          m_ClassName: System.String
+          m_Data: Local Hosting 0
+          m_Key: DescriptiveName
+        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+          m_ClassName: System.Int32
+          m_Data: 0
+          m_Key: InstanceId
+    m_Settings: {fileID: 11400000}
+    m_NextInstanceId: 1
+    m_RegisteredServiceTypeRefs:
+    - UnityEditor.AddressableAssets.HostingServices.HttpHostingService, Unity.Addressables.Editor

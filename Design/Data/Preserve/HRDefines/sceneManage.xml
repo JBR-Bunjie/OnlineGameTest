@@ -1,0 +1,14 @@
+﻿<module name="">
+
+<!--    <enum name="SceneManage">-->
+<!--        <var name="WelcomeScene" value="0"/>-->
+<!--        <var name="BattleScene" value="1"/>-->
+<!--        <var name="AIFF" value="2"/>-->
+<!--        <mapper target="client" codeTarget="cs-bin,cs-simple-json">-->
+<!--            <option name="type" value="UnityEngine.AudioType"/>-->
+<!--        </mapper>-->
+<!--        <mapper target="server" codeTarget="cs-bin,cs-dotnet-json">-->
+<!--            <option name="type" value="CustomAudioType"/>-->
+<!--        </mapper>-->
+<!--    </enum>-->
+</module>

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 0,
+    "SceneName": "StartUP",
+    "ScenePathPrefix": "Scene",
+    "SceneFullPath": "Scene/StartUP",
+    "BuildIndex": 0,
+    "targetSceneHandler": "StartUP"
+  },
+  {
+    "id": 1,
+    "SceneName": "Main",
+    "ScenePathPrefix": "Scene",
+    "SceneFullPath": "Scene/Main",
+    "BuildIndex": 1,
+    "targetSceneHandler": "Main"
+  },
+  {
+    "id": 2,
+    "SceneName": "Loading",
+    "ScenePathPrefix": "Scene",
+    "SceneFullPath": "Scene/Loading",
+    "BuildIndex": 2,
+    "targetSceneHandler": "Loading"
+  },
+  {
+    "id": 3,
+    "SceneName": "Home",
+    "ScenePathPrefix": "Scene",
+    "SceneFullPath": "Scene/Home",
+    "BuildIndex": 3,
+    "targetSceneHandler": "Home"
+  },
+  {
+    "id": 4,
+    "SceneName": "BattleField",
+    "ScenePathPrefix": "Scene",
+    "SceneFullPath": "Scene/BattleField",
+    "BuildIndex": 4,
+    "targetSceneHandler": "BattleField"
+  }
+]

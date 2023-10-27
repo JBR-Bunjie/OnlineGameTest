@@ -1,0 +1,430 @@
+﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
+
+namespace InputDetector {
+    public sealed class KeysInputDetector : InputDetector {
+        private static readonly Dictionary<string, KeysInputDetector> KeysInputDetectors;
+        public KeyCode keyCode;
+
+
+        #region Single Detector
+        
+        // here we finish the mapping of original KeyCode input to Detectors.
+        public static readonly KeysInputDetector A = new KeysInputDetector(KeyCode.A);
+        public static readonly KeysInputDetector B = new KeysInputDetector(KeyCode.B);
+        public static readonly KeysInputDetector C = new KeysInputDetector(KeyCode.C);
+        public static readonly KeysInputDetector D = new KeysInputDetector(KeyCode.D);
+        public static readonly KeysInputDetector E = new KeysInputDetector(KeyCode.E);
+        public static readonly KeysInputDetector F = new KeysInputDetector(KeyCode.F);
+        public static readonly KeysInputDetector G = new KeysInputDetector(KeyCode.G);
+        public static readonly KeysInputDetector H = new KeysInputDetector(KeyCode.H);
+        public static readonly KeysInputDetector I = new KeysInputDetector(KeyCode.I);
+        public static readonly KeysInputDetector J = new KeysInputDetector(KeyCode.J);
+        public static readonly KeysInputDetector K = new KeysInputDetector(KeyCode.K);
+        public static readonly KeysInputDetector L = new KeysInputDetector(KeyCode.L);
+        public static readonly KeysInputDetector M = new KeysInputDetector(KeyCode.M);
+        public static readonly KeysInputDetector N = new KeysInputDetector(KeyCode.N);
+        public static readonly KeysInputDetector O = new KeysInputDetector(KeyCode.O);
+        public static readonly KeysInputDetector P = new KeysInputDetector(KeyCode.P);
+        public static readonly KeysInputDetector Q = new KeysInputDetector(KeyCode.Q);
+        public static readonly KeysInputDetector R = new KeysInputDetector(KeyCode.R);
+        public static readonly KeysInputDetector S = new KeysInputDetector(KeyCode.S);
+        public static readonly KeysInputDetector T = new KeysInputDetector(KeyCode.T);
+        public static readonly KeysInputDetector U = new KeysInputDetector(KeyCode.U);
+        public static readonly KeysInputDetector V = new KeysInputDetector(KeyCode.V);
+        public static readonly KeysInputDetector W = new KeysInputDetector(KeyCode.W);
+        public static readonly KeysInputDetector X = new KeysInputDetector(KeyCode.X);
+        public static readonly KeysInputDetector Y = new KeysInputDetector(KeyCode.Y);
+        public static readonly KeysInputDetector Z = new KeysInputDetector(KeyCode.Z);
+        public static readonly KeysInputDetector F1 = new KeysInputDetector(KeyCode.F1);
+        public static readonly KeysInputDetector F2 = new KeysInputDetector(KeyCode.F2);
+        public static readonly KeysInputDetector F3 = new KeysInputDetector(KeyCode.F3);
+        public static readonly KeysInputDetector F4 = new KeysInputDetector(KeyCode.F4);
+        public static readonly KeysInputDetector F5 = new KeysInputDetector(KeyCode.F5);
+        public static readonly KeysInputDetector F6 = new KeysInputDetector(KeyCode.F6);
+        public static readonly KeysInputDetector F7 = new KeysInputDetector(KeyCode.F7);
+        public static readonly KeysInputDetector F8 = new KeysInputDetector(KeyCode.F8);
+        public static readonly KeysInputDetector F9 = new KeysInputDetector(KeyCode.F9);
+        public static readonly KeysInputDetector F10 = new KeysInputDetector(KeyCode.F10);
+        public static readonly KeysInputDetector F11 = new KeysInputDetector(KeyCode.F11);
+        public static readonly KeysInputDetector F12 = new KeysInputDetector(KeyCode.F12);
+        public static readonly KeysInputDetector F13 = new KeysInputDetector(KeyCode.F13);
+        public static readonly KeysInputDetector F14 = new KeysInputDetector(KeyCode.F14);
+        public static readonly KeysInputDetector F15 = new KeysInputDetector(KeyCode.F15);
+        public static readonly KeysInputDetector Alpha0 = new KeysInputDetector(KeyCode.Alpha0);
+        public static readonly KeysInputDetector Alpha1 = new KeysInputDetector(KeyCode.Alpha1);
+        public static readonly KeysInputDetector Alpha2 = new KeysInputDetector(KeyCode.Alpha2);
+        public static readonly KeysInputDetector Alpha3 = new KeysInputDetector(KeyCode.Alpha3);
+        public static readonly KeysInputDetector Alpha4 = new KeysInputDetector(KeyCode.Alpha4);
+        public static readonly KeysInputDetector Alpha5 = new KeysInputDetector(KeyCode.Alpha5);
+        public static readonly KeysInputDetector Alpha6 = new KeysInputDetector(KeyCode.Alpha6);
+        public static readonly KeysInputDetector Alpha7 = new KeysInputDetector(KeyCode.Alpha7);
+        public static readonly KeysInputDetector Alpha8 = new KeysInputDetector(KeyCode.Alpha8);
+        public static readonly KeysInputDetector Alpha9 = new KeysInputDetector(KeyCode.Alpha9);
+        public static readonly KeysInputDetector UpArrow = new KeysInputDetector(KeyCode.UpArrow);
+        public static readonly KeysInputDetector DownArrow = new KeysInputDetector(KeyCode.DownArrow);
+        public static readonly KeysInputDetector LeftArrow = new KeysInputDetector(KeyCode.LeftArrow);
+        public static readonly KeysInputDetector RightArrow = new KeysInputDetector(KeyCode.RightArrow);
+        public static readonly KeysInputDetector LeftControl = new KeysInputDetector(KeyCode.LeftControl);
+        public static readonly KeysInputDetector RightControl = new KeysInputDetector(KeyCode.RightControl);
+        public static readonly KeysInputDetector LeftShift = new KeysInputDetector(KeyCode.LeftShift);
+        public static readonly KeysInputDetector RightShift = new KeysInputDetector(KeyCode.RightShift);
+        public static readonly KeysInputDetector LeftCommand = new KeysInputDetector(KeyCode.LeftCommand);
+        public static readonly KeysInputDetector RightCommand = new KeysInputDetector(KeyCode.RightCommand);
+        public static readonly KeysInputDetector LeftApple = new KeysInputDetector(KeyCode.LeftApple);
+        public static readonly KeysInputDetector RightApple = new KeysInputDetector(KeyCode.RightApple);
+        public static readonly KeysInputDetector LeftWindows = new KeysInputDetector(KeyCode.LeftWindows);
+        public static readonly KeysInputDetector RightWindows = new KeysInputDetector(KeyCode.RightWindows);
+        public static readonly KeysInputDetector LeftAlt = new KeysInputDetector(KeyCode.LeftAlt);
+        public static readonly KeysInputDetector RightAlt = new KeysInputDetector(KeyCode.RightAlt);
+        public static readonly KeysInputDetector LeftBracket = new KeysInputDetector(KeyCode.LeftBracket);
+        public static readonly KeysInputDetector RightBracket = new KeysInputDetector(KeyCode.RightBracket);
+        public static readonly KeysInputDetector Escape = new KeysInputDetector(KeyCode.Escape);
+        public static readonly KeysInputDetector BackQuote = new KeysInputDetector(KeyCode.BackQuote);
+        public static readonly KeysInputDetector Backslash = new KeysInputDetector(KeyCode.Backslash);
+        public static readonly KeysInputDetector Minus = new KeysInputDetector(KeyCode.Minus);
+        public static readonly KeysInputDetector Equal = new KeysInputDetector(KeyCode.Equals);
+        public static readonly KeysInputDetector Comma = new KeysInputDetector(KeyCode.Comma);
+        public static readonly KeysInputDetector Period = new KeysInputDetector(KeyCode.Period);
+        public static readonly KeysInputDetector Slash = new KeysInputDetector(KeyCode.Slash);
+        public static readonly KeysInputDetector Backspace = new KeysInputDetector(KeyCode.Backspace);
+        public static readonly KeysInputDetector Tab = new KeysInputDetector(KeyCode.Tab);
+        public static readonly KeysInputDetector Space = new KeysInputDetector(KeyCode.Space);
+        public static readonly KeysInputDetector Semicolon = new KeysInputDetector(KeyCode.Semicolon);
+        public static readonly KeysInputDetector Quote = new KeysInputDetector(KeyCode.Quote);
+        public static readonly KeysInputDetector Return = new KeysInputDetector(KeyCode.Return);
+        public static readonly KeysInputDetector CapsLock = new KeysInputDetector(KeyCode.CapsLock);
+        public static readonly KeysInputDetector JoystickButton0 = new KeysInputDetector(KeyCode.JoystickButton0);
+        public static readonly KeysInputDetector JoystickButton1 = new KeysInputDetector(KeyCode.JoystickButton1);
+        public static readonly KeysInputDetector JoystickButton2 = new KeysInputDetector(KeyCode.JoystickButton2);
+        public static readonly KeysInputDetector JoystickButton3 = new KeysInputDetector(KeyCode.JoystickButton3);
+        public static readonly KeysInputDetector JoystickButton4 = new KeysInputDetector(KeyCode.JoystickButton4);
+        public static readonly KeysInputDetector JoystickButton5 = new KeysInputDetector(KeyCode.JoystickButton5);
+        public static readonly KeysInputDetector JoystickButton6 = new KeysInputDetector(KeyCode.JoystickButton6);
+        public static readonly KeysInputDetector JoystickButton7 = new KeysInputDetector(KeyCode.JoystickButton7);
+        public static readonly KeysInputDetector JoystickButton8 = new KeysInputDetector(KeyCode.JoystickButton8);
+        public static readonly KeysInputDetector JoystickButton9 = new KeysInputDetector(KeyCode.JoystickButton9);
+        public static readonly KeysInputDetector JoystickButton10 = new KeysInputDetector(KeyCode.JoystickButton10);
+        public static readonly KeysInputDetector JoystickButton11 = new KeysInputDetector(KeyCode.JoystickButton11);
+        public static readonly KeysInputDetector JoystickButton12 = new KeysInputDetector(KeyCode.JoystickButton12);
+        public static readonly KeysInputDetector JoystickButton13 = new KeysInputDetector(KeyCode.JoystickButton13);
+        public static readonly KeysInputDetector JoystickButton14 = new KeysInputDetector(KeyCode.JoystickButton14);
+        public static readonly KeysInputDetector JoystickButton15 = new KeysInputDetector(KeyCode.JoystickButton15);
+        public static readonly KeysInputDetector JoystickButton16 = new KeysInputDetector(KeyCode.JoystickButton16);
+        public static readonly KeysInputDetector JoystickButton17 = new KeysInputDetector(KeyCode.JoystickButton17);
+        public static readonly KeysInputDetector JoystickButton18 = new KeysInputDetector(KeyCode.JoystickButton18);
+        public static readonly KeysInputDetector JoystickButton19 = new KeysInputDetector(KeyCode.JoystickButton19);
+        public static readonly KeysInputDetector Joystick1Button0 = new KeysInputDetector(KeyCode.Joystick1Button0);
+        public static readonly KeysInputDetector Joystick1Button1 = new KeysInputDetector(KeyCode.Joystick1Button1);
+        public static readonly KeysInputDetector Joystick1Button2 = new KeysInputDetector(KeyCode.Joystick1Button2);
+        public static readonly KeysInputDetector Joystick1Button3 = new KeysInputDetector(KeyCode.Joystick1Button3);
+        public static readonly KeysInputDetector Joystick1Button4 = new KeysInputDetector(KeyCode.Joystick1Button4);
+        public static readonly KeysInputDetector Joystick1Button5 = new KeysInputDetector(KeyCode.Joystick1Button5);
+        public static readonly KeysInputDetector Joystick1Button6 = new KeysInputDetector(KeyCode.Joystick1Button6);
+        public static readonly KeysInputDetector Joystick1Button7 = new KeysInputDetector(KeyCode.Joystick1Button7);
+        public static readonly KeysInputDetector Joystick1Button8 = new KeysInputDetector(KeyCode.Joystick1Button8);
+        public static readonly KeysInputDetector Joystick1Button9 = new KeysInputDetector(KeyCode.Joystick1Button9);
+        public static readonly KeysInputDetector Joystick1Button10 = new KeysInputDetector(KeyCode.Joystick1Button10);
+        public static readonly KeysInputDetector Joystick1Button11 = new KeysInputDetector(KeyCode.Joystick1Button11);
+        public static readonly KeysInputDetector Joystick1Button12 = new KeysInputDetector(KeyCode.Joystick1Button12);
+        public static readonly KeysInputDetector Joystick1Button13 = new KeysInputDetector(KeyCode.Joystick1Button13);
+        public static readonly KeysInputDetector Joystick1Button14 = new KeysInputDetector(KeyCode.Joystick1Button14);
+        public static readonly KeysInputDetector Joystick1Button15 = new KeysInputDetector(KeyCode.Joystick1Button15);
+        public static readonly KeysInputDetector Joystick1Button16 = new KeysInputDetector(KeyCode.Joystick1Button16);
+        public static readonly KeysInputDetector Joystick1Button17 = new KeysInputDetector(KeyCode.Joystick1Button17);
+        public static readonly KeysInputDetector Joystick1Button18 = new KeysInputDetector(KeyCode.Joystick1Button18);
+        public static readonly KeysInputDetector Joystick1Button19 = new KeysInputDetector(KeyCode.Joystick1Button19);
+        public static readonly KeysInputDetector Joystick2Button0 = new KeysInputDetector(KeyCode.Joystick2Button0);
+        public static readonly KeysInputDetector Joystick2Button1 = new KeysInputDetector(KeyCode.Joystick2Button1);
+        public static readonly KeysInputDetector Joystick2Button2 = new KeysInputDetector(KeyCode.Joystick2Button2);
+        public static readonly KeysInputDetector Joystick2Button3 = new KeysInputDetector(KeyCode.Joystick2Button3);
+        public static readonly KeysInputDetector Joystick2Button4 = new KeysInputDetector(KeyCode.Joystick2Button4);
+        public static readonly KeysInputDetector Joystick2Button5 = new KeysInputDetector(KeyCode.Joystick2Button5);
+        public static readonly KeysInputDetector Joystick2Button6 = new KeysInputDetector(KeyCode.Joystick2Button6);
+        public static readonly KeysInputDetector Joystick2Button7 = new KeysInputDetector(KeyCode.Joystick2Button7);
+        public static readonly KeysInputDetector Joystick2Button8 = new KeysInputDetector(KeyCode.Joystick2Button8);
+        public static readonly KeysInputDetector Joystick2Button9 = new KeysInputDetector(KeyCode.Joystick2Button9);
+        public static readonly KeysInputDetector Joystick2Button10 = new KeysInputDetector(KeyCode.Joystick2Button10);
+        public static readonly KeysInputDetector Joystick2Button11 = new KeysInputDetector(KeyCode.Joystick2Button11);
+        public static readonly KeysInputDetector Joystick2Button12 = new KeysInputDetector(KeyCode.Joystick2Button12);
+        public static readonly KeysInputDetector Joystick2Button13 = new KeysInputDetector(KeyCode.Joystick2Button13);
+        public static readonly KeysInputDetector Joystick2Button14 = new KeysInputDetector(KeyCode.Joystick2Button14);
+        public static readonly KeysInputDetector Joystick2Button15 = new KeysInputDetector(KeyCode.Joystick2Button15);
+        public static readonly KeysInputDetector Joystick2Button16 = new KeysInputDetector(KeyCode.Joystick2Button16);
+        public static readonly KeysInputDetector Joystick2Button17 = new KeysInputDetector(KeyCode.Joystick2Button17);
+        public static readonly KeysInputDetector Joystick2Button18 = new KeysInputDetector(KeyCode.Joystick2Button18);
+        public static readonly KeysInputDetector Joystick2Button19 = new KeysInputDetector(KeyCode.Joystick2Button19);
+        public static readonly KeysInputDetector Joystick3Button0 = new KeysInputDetector(KeyCode.Joystick3Button0);
+        public static readonly KeysInputDetector Joystick3Button1 = new KeysInputDetector(KeyCode.Joystick3Button1);
+        public static readonly KeysInputDetector Joystick3Button2 = new KeysInputDetector(KeyCode.Joystick3Button2);
+        public static readonly KeysInputDetector Joystick3Button3 = new KeysInputDetector(KeyCode.Joystick3Button3);
+        public static readonly KeysInputDetector Joystick3Button4 = new KeysInputDetector(KeyCode.Joystick3Button4);
+        public static readonly KeysInputDetector Joystick3Button5 = new KeysInputDetector(KeyCode.Joystick3Button5);
+        public static readonly KeysInputDetector Joystick3Button6 = new KeysInputDetector(KeyCode.Joystick3Button6);
+        public static readonly KeysInputDetector Joystick3Button7 = new KeysInputDetector(KeyCode.Joystick3Button7);
+        public static readonly KeysInputDetector Joystick3Button8 = new KeysInputDetector(KeyCode.Joystick3Button8);
+        public static readonly KeysInputDetector Joystick3Button9 = new KeysInputDetector(KeyCode.Joystick3Button9);
+        public static readonly KeysInputDetector Joystick3Button10 = new KeysInputDetector(KeyCode.Joystick3Button10);
+        public static readonly KeysInputDetector Joystick3Button11 = new KeysInputDetector(KeyCode.Joystick3Button11);
+        public static readonly KeysInputDetector Joystick3Button12 = new KeysInputDetector(KeyCode.Joystick3Button12);
+        public static readonly KeysInputDetector Joystick3Button13 = new KeysInputDetector(KeyCode.Joystick3Button13);
+        public static readonly KeysInputDetector Joystick3Button14 = new KeysInputDetector(KeyCode.Joystick3Button14);
+        public static readonly KeysInputDetector Joystick3Button15 = new KeysInputDetector(KeyCode.Joystick3Button15);
+        public static readonly KeysInputDetector Joystick3Button16 = new KeysInputDetector(KeyCode.Joystick3Button16);
+        public static readonly KeysInputDetector Joystick3Button17 = new KeysInputDetector(KeyCode.Joystick3Button17);
+        public static readonly KeysInputDetector Joystick3Button18 = new KeysInputDetector(KeyCode.Joystick3Button18);
+        public static readonly KeysInputDetector Joystick3Button19 = new KeysInputDetector(KeyCode.Joystick3Button19);
+        public static readonly KeysInputDetector Joystick4Button0 = new KeysInputDetector(KeyCode.Joystick4Button0);
+        public static readonly KeysInputDetector Joystick4Button1 = new KeysInputDetector(KeyCode.Joystick4Button1);
+        public static readonly KeysInputDetector Joystick4Button2 = new KeysInputDetector(KeyCode.Joystick4Button2);
+        public static readonly KeysInputDetector Joystick4Button3 = new KeysInputDetector(KeyCode.Joystick4Button3);
+        public static readonly KeysInputDetector Joystick4Button4 = new KeysInputDetector(KeyCode.Joystick4Button4);
+        public static readonly KeysInputDetector Joystick4Button5 = new KeysInputDetector(KeyCode.Joystick4Button5);
+        public static readonly KeysInputDetector Joystick4Button6 = new KeysInputDetector(KeyCode.Joystick4Button6);
+        public static readonly KeysInputDetector Joystick4Button7 = new KeysInputDetector(KeyCode.Joystick4Button7);
+        public static readonly KeysInputDetector Joystick4Button8 = new KeysInputDetector(KeyCode.Joystick4Button8);
+        public static readonly KeysInputDetector Joystick4Button9 = new KeysInputDetector(KeyCode.Joystick4Button9);
+        public static readonly KeysInputDetector Joystick4Button10 = new KeysInputDetector(KeyCode.Joystick4Button10);
+        public static readonly KeysInputDetector Joystick4Button11 = new KeysInputDetector(KeyCode.Joystick4Button11);
+        public static readonly KeysInputDetector Joystick4Button12 = new KeysInputDetector(KeyCode.Joystick4Button12);
+        public static readonly KeysInputDetector Joystick4Button13 = new KeysInputDetector(KeyCode.Joystick4Button13);
+        public static readonly KeysInputDetector Joystick4Button14 = new KeysInputDetector(KeyCode.Joystick4Button14);
+        public static readonly KeysInputDetector Joystick4Button15 = new KeysInputDetector(KeyCode.Joystick4Button15);
+        public static readonly KeysInputDetector Joystick4Button16 = new KeysInputDetector(KeyCode.Joystick4Button16);
+        public static readonly KeysInputDetector Joystick4Button17 = new KeysInputDetector(KeyCode.Joystick4Button17);
+        public static readonly KeysInputDetector Joystick4Button18 = new KeysInputDetector(KeyCode.Joystick4Button18);
+        public static readonly KeysInputDetector Joystick4Button19 = new KeysInputDetector(KeyCode.Joystick4Button19);
+        
+        #endregion
+        
+        #region Detector Dictionary
+        
+        static KeysInputDetector() {
+            KeysInputDetectors = new Dictionary<string, KeysInputDetector>(184);
+            KeysInputDetectors["A"] = A;
+            KeysInputDetectors["B"] = B;
+            KeysInputDetectors["C"] = C;
+            KeysInputDetectors["D"] = D;
+            KeysInputDetectors["E"] = E;
+            KeysInputDetectors["F"] = F;
+            KeysInputDetectors["G"] = G;
+            KeysInputDetectors["H"] = H;
+            KeysInputDetectors["I"] = I;
+            KeysInputDetectors["J"] = J;
+            KeysInputDetectors["K"] = K;
+            KeysInputDetectors["L"] = L;
+            KeysInputDetectors["M"] = M;
+            KeysInputDetectors["N"] = N;
+            KeysInputDetectors["O"] = O;
+            KeysInputDetectors["P"] = P;
+            KeysInputDetectors["Q"] = Q;
+            KeysInputDetectors["R"] = R;
+            KeysInputDetectors["S"] = S;
+            KeysInputDetectors["T"] = T;
+            KeysInputDetectors["U"] = U;
+            KeysInputDetectors["V"] = V;
+            KeysInputDetectors["W"] = W;
+            KeysInputDetectors["X"] = X;
+            KeysInputDetectors["Y"] = Y;
+            KeysInputDetectors["Z"] = Z;
+            KeysInputDetectors["F1"] = F1;
+            KeysInputDetectors["F2"] = F2;
+            KeysInputDetectors["F3"] = F3;
+            KeysInputDetectors["F4"] = F4;
+            KeysInputDetectors["F5"] = F5;
+            KeysInputDetectors["F6"] = F6;
+            KeysInputDetectors["F7"] = F7;
+            KeysInputDetectors["F8"] = F8;
+            KeysInputDetectors["F9"] = F9;
+            KeysInputDetectors["F10"] = F10;
+            KeysInputDetectors["F11"] = F11;
+            KeysInputDetectors["F12"] = F12;
+            KeysInputDetectors["F13"] = F13;
+            KeysInputDetectors["F14"] = F14;
+            KeysInputDetectors["F15"] = F15;
+            KeysInputDetectors["Alpha0"] = Alpha0;
+            KeysInputDetectors["Alpha1"] = Alpha1;
+            KeysInputDetectors["Alpha2"] = Alpha2;
+            KeysInputDetectors["Alpha3"] = Alpha3;
+            KeysInputDetectors["Alpha4"] = Alpha4;
+            KeysInputDetectors["Alpha5"] = Alpha5;
+            KeysInputDetectors["Alpha6"] = Alpha6;
+            KeysInputDetectors["Alpha7"] = Alpha7;
+            KeysInputDetectors["Alpha8"] = Alpha8;
+            KeysInputDetectors["Alpha9"] = Alpha9;
+            KeysInputDetectors["UpArrow"] = UpArrow;
+            KeysInputDetectors["DownArrow"] = DownArrow;
+            KeysInputDetectors["LeftArrow"] = LeftArrow;
+            KeysInputDetectors["RightArrow"] = RightArrow;
+            KeysInputDetectors["LeftControl"] = LeftControl;
+            KeysInputDetectors["RightControl"] = RightControl;
+            KeysInputDetectors["LeftShift"] = LeftShift;
+            KeysInputDetectors["RightShift"] = RightShift;
+            KeysInputDetectors["LeftCommand"] = LeftCommand;
+            KeysInputDetectors["RightCommand"] = RightCommand;
+            KeysInputDetectors["LeftApple"] = LeftApple;
+            KeysInputDetectors["RightApple"] = RightApple;
+            KeysInputDetectors["LeftWindows"] = LeftWindows;
+            KeysInputDetectors["RightWindows"] = RightWindows;
+            KeysInputDetectors["LeftAlt"] = LeftAlt;
+            KeysInputDetectors["RightAlt"] = RightAlt;
+            KeysInputDetectors["LeftBracket"] = LeftBracket;
+            KeysInputDetectors["RightBracket"] = RightBracket;
+            KeysInputDetectors["Escape"] = Escape;
+            KeysInputDetectors["BackQuote"] = BackQuote;
+            KeysInputDetectors["Backslash"] = Backslash;
+            KeysInputDetectors["Minus"] = Minus;
+            KeysInputDetectors["Equals"] = Equal;
+            KeysInputDetectors["Comma"] = Comma;
+            KeysInputDetectors["Period"] = Period;
+            KeysInputDetectors["Slash"] = Slash;
+            KeysInputDetectors["Backspace"] = Backspace;
+            KeysInputDetectors["Tab"] = Tab;
+            KeysInputDetectors["Space"] = Space;
+            KeysInputDetectors["Semicolon"] = Semicolon;
+            KeysInputDetectors["Quote"] = Quote;
+            KeysInputDetectors["Return"] = Return;
+            KeysInputDetectors["CapsLock"] = CapsLock;
+            KeysInputDetectors["JoystickButton0"] = JoystickButton0;
+            KeysInputDetectors["JoystickButton1"] = JoystickButton1;
+            KeysInputDetectors["JoystickButton2"] = JoystickButton2;
+            KeysInputDetectors["JoystickButton3"] = JoystickButton3;
+            KeysInputDetectors["JoystickButton4"] = JoystickButton4;
+            KeysInputDetectors["JoystickButton5"] = JoystickButton5;
+            KeysInputDetectors["JoystickButton6"] = JoystickButton6;
+            KeysInputDetectors["JoystickButton7"] = JoystickButton7;
+            KeysInputDetectors["JoystickButton8"] = JoystickButton8;
+            KeysInputDetectors["JoystickButton9"] = JoystickButton9;
+            KeysInputDetectors["JoystickButton10"] = JoystickButton10;
+            KeysInputDetectors["JoystickButton11"] = JoystickButton11;
+            KeysInputDetectors["JoystickButton12"] = JoystickButton12;
+            KeysInputDetectors["JoystickButton13"] = JoystickButton13;
+            KeysInputDetectors["JoystickButton14"] = JoystickButton14;
+            KeysInputDetectors["JoystickButton15"] = JoystickButton15;
+            KeysInputDetectors["JoystickButton16"] = JoystickButton16;
+            KeysInputDetectors["JoystickButton17"] = JoystickButton17;
+            KeysInputDetectors["JoystickButton18"] = JoystickButton18;
+            KeysInputDetectors["JoystickButton19"] = JoystickButton19;
+            KeysInputDetectors["Joystick1Button0"] = Joystick1Button0;
+            KeysInputDetectors["Joystick1Button1"] = Joystick1Button1;
+            KeysInputDetectors["Joystick1Button2"] = Joystick1Button2;
+            KeysInputDetectors["Joystick1Button3"] = Joystick1Button3;
+            KeysInputDetectors["Joystick1Button4"] = Joystick1Button4;
+            KeysInputDetectors["Joystick1Button5"] = Joystick1Button5;
+            KeysInputDetectors["Joystick1Button6"] = Joystick1Button6;
+            KeysInputDetectors["Joystick1Button7"] = Joystick1Button7;
+            KeysInputDetectors["Joystick1Button8"] = Joystick1Button8;
+            KeysInputDetectors["Joystick1Button9"] = Joystick1Button9;
+            KeysInputDetectors["Joystick1Button10"] = Joystick1Button10;
+            KeysInputDetectors["Joystick1Button11"] = Joystick1Button11;
+            KeysInputDetectors["Joystick1Button12"] = Joystick1Button12;
+            KeysInputDetectors["Joystick1Button13"] = Joystick1Button13;
+            KeysInputDetectors["Joystick1Button14"] = Joystick1Button14;
+            KeysInputDetectors["Joystick1Button15"] = Joystick1Button15;
+            KeysInputDetectors["Joystick1Button16"] = Joystick1Button16;
+            KeysInputDetectors["Joystick1Button17"] = Joystick1Button17;
+            KeysInputDetectors["Joystick1Button18"] = Joystick1Button18;
+            KeysInputDetectors["Joystick1Button19"] = Joystick1Button19;
+            KeysInputDetectors["Joystick2Button0"] = Joystick2Button0;
+            KeysInputDetectors["Joystick2Button1"] = Joystick2Button1;
+            KeysInputDetectors["Joystick2Button2"] = Joystick2Button2;
+            KeysInputDetectors["Joystick2Button3"] = Joystick2Button3;
+            KeysInputDetectors["Joystick2Button4"] = Joystick2Button4;
+            KeysInputDetectors["Joystick2Button5"] = Joystick2Button5;
+            KeysInputDetectors["Joystick2Button6"] = Joystick2Button6;
+            KeysInputDetectors["Joystick2Button7"] = Joystick2Button7;
+            KeysInputDetectors["Joystick2Button8"] = Joystick2Button8;
+            KeysInputDetectors["Joystick2Button9"] = Joystick2Button9;
+            KeysInputDetectors["Joystick2Button10"] = Joystick2Button10;
+            KeysInputDetectors["Joystick2Button11"] = Joystick2Button11;
+            KeysInputDetectors["Joystick2Button12"] = Joystick2Button12;
+            KeysInputDetectors["Joystick2Button13"] = Joystick2Button13;
+            KeysInputDetectors["Joystick2Button14"] = Joystick2Button14;
+            KeysInputDetectors["Joystick2Button15"] = Joystick2Button15;
+            KeysInputDetectors["Joystick2Button16"] = Joystick2Button16;
+            KeysInputDetectors["Joystick2Button17"] = Joystick2Button17;
+            KeysInputDetectors["Joystick2Button18"] = Joystick2Button18;
+            KeysInputDetectors["Joystick2Button19"] = Joystick2Button19;
+            KeysInputDetectors["Joystick3Button0"] = Joystick3Button0;
+            KeysInputDetectors["Joystick3Button1"] = Joystick3Button1;
+            KeysInputDetectors["Joystick3Button2"] = Joystick3Button2;
+            KeysInputDetectors["Joystick3Button3"] = Joystick3Button3;
+            KeysInputDetectors["Joystick3Button4"] = Joystick3Button4;
+            KeysInputDetectors["Joystick3Button5"] = Joystick3Button5;
+            KeysInputDetectors["Joystick3Button6"] = Joystick3Button6;
+            KeysInputDetectors["Joystick3Button7"] = Joystick3Button7;
+            KeysInputDetectors["Joystick3Button8"] = Joystick3Button8;
+            KeysInputDetectors["Joystick3Button9"] = Joystick3Button9;
+            KeysInputDetectors["Joystick3Button10"] = Joystick3Button10;
+            KeysInputDetectors["Joystick3Button11"] = Joystick3Button11;
+            KeysInputDetectors["Joystick3Button12"] = Joystick3Button12;
+            KeysInputDetectors["Joystick3Button13"] = Joystick3Button13;
+            KeysInputDetectors["Joystick3Button14"] = Joystick3Button14;
+            KeysInputDetectors["Joystick3Button15"] = Joystick3Button15;
+            KeysInputDetectors["Joystick3Button16"] = Joystick3Button16;
+            KeysInputDetectors["Joystick3Button17"] = Joystick3Button17;
+            KeysInputDetectors["Joystick3Button18"] = Joystick3Button18;
+            KeysInputDetectors["Joystick3Button19"] = Joystick3Button19;
+            KeysInputDetectors["Joystick4Button0"] = Joystick4Button0;
+            KeysInputDetectors["Joystick4Button1"] = Joystick4Button1;
+            KeysInputDetectors["Joystick4Button2"] = Joystick4Button2;
+            KeysInputDetectors["Joystick4Button3"] = Joystick4Button3;
+            KeysInputDetectors["Joystick4Button4"] = Joystick4Button4;
+            KeysInputDetectors["Joystick4Button5"] = Joystick4Button5;
+            KeysInputDetectors["Joystick4Button6"] = Joystick4Button6;
+            KeysInputDetectors["Joystick4Button7"] = Joystick4Button7;
+            KeysInputDetectors["Joystick4Button8"] = Joystick4Button8;
+            KeysInputDetectors["Joystick4Button9"] = Joystick4Button9;
+            KeysInputDetectors["Joystick4Button10"] = Joystick4Button10;
+            KeysInputDetectors["Joystick4Button11"] = Joystick4Button11;
+            KeysInputDetectors["Joystick4Button12"] = Joystick4Button12;
+            KeysInputDetectors["Joystick4Button13"] = Joystick4Button13;
+            KeysInputDetectors["Joystick4Button14"] = Joystick4Button14;
+            KeysInputDetectors["Joystick4Button15"] = Joystick4Button15;
+            KeysInputDetectors["Joystick4Button16"] = Joystick4Button16;
+            KeysInputDetectors["Joystick4Button17"] = Joystick4Button17;
+            KeysInputDetectors["Joystick4Button18"] = Joystick4Button18;
+            KeysInputDetectors["Joystick4Button19"] = Joystick4Button19;
+        }
+        
+        #endregion
+        
+        
+        public KeysInputDetector(KeyCode keyCode) {
+            string name = Enum.GetName(typeof(KeyCode), keyCode);
+            this.keyCode = keyCode;
+        }
+
+        public KeysInputDetector(string keyName) {
+            _name = keyName;
+            keyCode = keyName.ToEnum<KeyCode>();
+        }
+
+        public override void Refresh() {
+            _isPressed = false;
+            _isReleased = false;
+            if (Input.GetKeyDown(keyCode)) {
+                _isPressed = true;
+                _isHeld = true;
+                _lastPressedTime = Time.time;
+            }
+            else if (Input.GetKeyUp(keyCode)) {
+                _isReleased = true;
+                _isHeld = false;
+            }
+        }
+
+        public static KeysInputDetector ToKeysInputDetector(string name) {
+            return KeysInputDetectors.TryGetValue(name, out KeysInputDetector value) ? value : null;
+        }
+
+        public static bool operator ==(KeysInputDetector lhs, KeysInputDetector rhs) {
+            return lhs.keyCode == rhs.keyCode;
+        }
+
+        public static bool operator !=(KeysInputDetector lhs, KeysInputDetector rhs) {
+            return lhs.keyCode != rhs.keyCode;
+        }
+    }
+}

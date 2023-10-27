@@ -1,22 +1,10 @@
 # Sour Night
 
-## About This Project
+## 关于项目
 
-### General:
+是验证热更新的实验项目，该项目实现了以下内容：
+- 基于Addressables的AB资源管理
+- 基于HybridCLR的热更新
 
-此项目为，合肥工业大学2023年学年春季学期，计算机网络的课程设计内容
+存在一个使用flask的简易后台，设定路径于 `Scripts/NetworkProcessor/NetworkHandler.cs`
 
-### Dependencies:
-- Main Framework:
-    - Unity 2021.3.23f1
-    - Mirror 78.8.3
-- Target Platform: Windows 11
-
-## How to Play
-
-
-
-## Rules
-
-
-## Credits
