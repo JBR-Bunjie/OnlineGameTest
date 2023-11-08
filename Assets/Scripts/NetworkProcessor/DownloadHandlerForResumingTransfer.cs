@@ -2,7 +2,8 @@
 using System.IO;
 using UnityEngine.Networking;
 
-// 轮子：https://gist.github.com/TouiSoraHe/19f2afeee1334cb8e42b3c8f2c283a65
+// 小轮子（本文件）：https://gist.github.com/TouiSoraHe/19f2afeee1334cb8e42b3c8f2c283a65
+// 大轮子：https://github.com/zhaojunmeng/UnityDownloadHandlerScriptDemo/tree/main
 namespace NetworkProcessor {
     /// <summary>
     /// 使用方式:
